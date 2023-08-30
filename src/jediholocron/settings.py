@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    # second parth apps
+    "user_app.apps.UserAppConfig",
+
     # third party apps
     "rest_framework",
     "rest_framework_simplejwt",
@@ -51,6 +54,9 @@ INSTALLED_APPS = [
     "drf_yasg",
 
 ]
+
+
+AUTH_USER_MODEL = "user_app.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -100,7 +106,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.FormParser',
