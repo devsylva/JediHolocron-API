@@ -52,11 +52,18 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "corsheaders",
     "drf_yasg",
+    "crontab"
 
 ]
 
 
 AUTH_USER_MODEL = "user_app.User"
+
+
+CRONJOBS = [
+    ('0 0 * * *', 'yourapp.management.commands.update_external_data')
+]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
