@@ -7,8 +7,11 @@ The JediHolocron API is built with Django Rest Framework (DRF) and provides awes
 
 # Tech Stack
 - Language: Python 3.11.3
-- Framework: Django and Django Rest Framework 
+- Framework: django
 - Database: PostgreSQL
+- Version Control: Git
+- Hosting/Deployment: Heroku
+- Authentication and Authorization: JSON Web Token (JWT)
 
 
 # System Architecture
