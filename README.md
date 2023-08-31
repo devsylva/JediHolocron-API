@@ -116,6 +116,45 @@ The following endpoints are available in the API:
 -   `api/comment/<int:id>/` (DELETE): allows authenticated users delete their comment.
 
 
+
+## Automatic Film Data Update from External API
+
+In this section, we will cover how i implemented a function to automatically update film data from the Star Wars API using Django's `django-crontab` package. This feature ensures that your film database stays up-to-date with the latest information from the external source.
+
+### Background
+
+Maintaining accurate and current film data is crucial for this application. To achieve this, i had to integrate a mechanism to periodically fetch and update film records from the Star Wars API.
+
+### Updating Function: `update_film_data`
+
+The `update_film_data` function is responsible for fetching film data from the external API and updating your local database accordingly. This function is designed to be executed at specified intervals, ensuring that your film records remain current.
+
+#### Implementation Details
+
+Here's an overview of how the `update_film_data` function works:
+
+1. The function sends an HTTP request to the external API to fetch the latest film data.
+2. It receives the API response, which typically contains a list of film records.
+3. The function iterates through the fetched film records and processes each entry.
+4. For each film, it checks whether the film already exists in your local database based on a unique identifier `ID`.
+5. If the film exists, the function updates the relevant fields (e.g., release date, title, etc) to reflect the latest information.
+6. If the film is not found, the function creates a new film record using the fetched data.
+
+#### Scheduling the Update
+
+i configured the `update_film_data` function to run automatically using Django's `django-crontab` package. The function is scheduled to run every midnight, ensuring that your film database is updated daily.
+
+
+#### Extracting Film ID from URL
+
+To smartly retrieve the film's ID from the URL provided by the external API, you have employed a parsing strategy. You iterated over the URL to extract the necessary ID component, which uniquely identifies the film. This clever approach allows you to match external film data with your local records efficiently.
+
+
+
+### Conclusion
+
+The automatic film data update functionality, scheduled to run every midnight using `django-crontab`, is a valuable addition to the Film API. This ensures that the application's film records are always up-to-date with the latest information from the external API. By periodically fetching and processing new data, i enhanced the accuracy and reliability of the film database.
+
 # License
 
 This project is licensed under the MIT License - [LICENSE](LICENSE) file for details.

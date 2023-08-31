@@ -11,7 +11,6 @@ class Command(BaseCommand):
         film_data = data["results"]
         for i in film_data:
             film, created = Film.objects.update_or_create(
-                # i used the id as my unique identifier
                 # get film id from the url endpoint
                 id=int(i['url'][28:-1]),
                 defaults={
