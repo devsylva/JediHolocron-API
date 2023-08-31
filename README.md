@@ -88,3 +88,15 @@ The API should provide a user registration and login including password recovery
 
 ### Film Storage and Organization
 The API should provide an effective pattern for fetching Film data from the provided Star Wars API endpoint in other to store the film's id, title, release date and comment count in our database. Films should be sorted in ascending order with respect to their release date, Also users shouldbe able to comment on film(s), hence provide endpoint for listing comments made to film(s) also in ascending order with respect to their creation time.
+
+
+## User Authentication
+Authentication is required for most endpoints in the API. To authenticate, include an access token in the `Authorization` header of your request. The access token can be obtained by logging in to your account or registering a new account.
+
+The following endpoints are available in the API:
+
+-   `api/auth/signup/` (POST): to allow users register an account.
+-   `api/auth/login/` (POST): to allow users to log in into their account.
+-   `api/auth/login/refresh/` (POST): to allow user refresh to get their access token after it expires.
+-   `api/auth/logout/` (POST): to allow users to log out of their account.
+-   `api/auth/change_password/` (POST): to allow users change there account password.
