@@ -1,1 +1,1 @@
-web: gunicorn jediholocron.wsgi
+web: gunicorn src.jediholocron.wsgi
