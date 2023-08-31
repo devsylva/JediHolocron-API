@@ -12,6 +12,7 @@ The JediHolocron API is built with Django Rest Framework (DRF) and provides awes
 
 
 # System Architecture
+![Untitled Diagram drawio](https://github.com/devsylva/JediHolocron-API/assets/67736638/f2b770ba-9b48-435f-ab52-fdf7d089e429)
 
 
 # ER-Diagram
