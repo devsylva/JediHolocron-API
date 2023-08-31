@@ -116,6 +116,6 @@ The following endpoints are available in the API:
 -   `api/comment/<int:id>/` (DELETE): allows authenticated users delete their comment.
 
 
-#License
+# License
 
 This project is licensed under the MIT License - [LICENSE](LICENSE) file for details.
