@@ -55,6 +55,7 @@ class FilmDetail(APIView):
 
 
 class CommentView(APIView):
+    permission_classes = [IsAuthenticated]
     """
     list all comment or create a new comment
     """
@@ -88,7 +89,7 @@ class CommentDetail(APIView):
         comment = get_object_or_404(Comment, pk=pk)
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response({
                 "message": "comment updated",
                 "data": serializer.data
@@ -96,7 +97,7 @@ class CommentDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        comment = get_object_or_404(Comment, pk=pk)
+        comment = get_object_or_404(Comment, pk=pk, user=request.user)
         comment.delete()
         return Response({
             "message": "Comment deleted"

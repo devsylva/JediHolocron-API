@@ -38,7 +38,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("user_app.urls")),
-    path("api/film/", include("core.urls")),
+    path("api/", include("core.urls")),
     path("", WelcomeView.as_view()) ,
 
     # swagger doc routes
