@@ -11,6 +11,8 @@ The JediHolocron API is built with Django Rest Framework (DRF) and provides awes
 - Database: PostgreSQL
 
 
+# System Architecture
+
 
 # ER-Diagram
 ![Jediholocron](https://github.com/devsylva/JediHolocron-API/assets/67736638/51210bae-3e4a-4750-9f6d-8a34d3525839)
