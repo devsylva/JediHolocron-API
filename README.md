@@ -103,7 +103,7 @@ The following endpoints are available in the API:
 
 
 ## Core Application Endpoints
-Kindly note that all the endpoints provided below requires authentication, hence kindly provided your access token generated during your login  and include the token in the `Authorization` header of your request. e.g `Authorization: Token <your_access_token>` 
+Kindly note that all the endpoints provided below requires authentication, hence kindly provided your access token generated during your login  and include the token in the `Authorization` header of your request. e.g `Authorization: Bearer <your_access_token>` 
 
 The following endpoints are available in the API:
 
