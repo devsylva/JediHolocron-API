@@ -8,8 +8,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         response = requests.get('https://swapi.dev/api/films') 
         data = response.json()
-        # print(data["results"][1]["url"][28:-1])
-
         film_data = data["results"]
         for i in film_data:
             film, created = Film.objects.update_or_create(

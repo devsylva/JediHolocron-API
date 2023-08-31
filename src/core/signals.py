@@ -3,6 +3,9 @@ from .models import Comment, Film
 from django.dispatch import receiver
 
 
+"""
+auto increment the film comment count field after each comment is saved
+"""
 @receiver(post_save, sender=Comment)
 def update_film_comment_count(sender, instance, created, **kwargs):
     if created:

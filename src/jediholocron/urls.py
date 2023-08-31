@@ -21,6 +21,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
+from core.views import WelcomeView
 
 
 schema_view = get_schema_view(
@@ -37,7 +38,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("user_app.urls")),
-    path("api/", include("core.urls")),
+    path("api/film/", include("core.urls")),
+    path("", WelcomeView.as_view()) ,
 
     # swagger doc routes
     path("api/doc/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,6 +8,23 @@ from .serializers import FilmSerializer, CommentSerializer
 
 
 # Create your views here.
+class WelcomeView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(sef, requset, format=None):
+        return Response({
+            "project name": "JediHolocron API",
+            "author": "Ejike Sylva",
+            "stack": {
+                "language": "Python",
+                "framework": "Django",
+                "database": "Postgres"
+            },
+            "api doc": "https://jediholocron-3afedfa6d6ce.herokuapp.com/api/doc/",
+            "github repo": "https://github.com/devsylva/",
+        }, status=status.HTTP_200_OK)
+
+
 class FilmView(APIView):
     permission_classes = [IsAuthenticated]
     """
@@ -55,3 +72,32 @@ class CommentView(APIView):
                 "data": serializer.data
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CommentDetail(APIView):
+    permission_classes = [IsAuthenticated]
+    """
+    retrieve a comment instance
+    """
+    def get(self, request, pk, format=None):
+        comment = get_object_or_404(Comment, pk=pk)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk, format=None):
+        comment = get_object_or_404(Comment, pk=pk)
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                "message": "comment updated",
+                "data": serializer.data
+            }, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        comment = get_object_or_404(Comment, pk=pk)
+        comment.delete()
+        return Response({
+            "message": "Comment deleted"
+        }, status=status.HTTP_204_NO_CONTENT)
