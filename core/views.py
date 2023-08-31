@@ -52,8 +52,8 @@ class FilmDetail(APIView):
         serializer = FilmSerializer(film)
         return Response({
             "film": serializer.data,
-            "comment count": Comment.objects.filter(film=film).count(),
-            "comments" : film.comment_set.all()
+            "comment count": film.comments.count(),
+            "comments" : film.comments.all()
         }, status=status.HTTP_200_OK)
 
 
