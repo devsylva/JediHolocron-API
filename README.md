@@ -114,3 +114,8 @@ The following endpoints are available in the API:
 -   `api/comments/` (POST): allow authenticated users create a comment for a partifular film.
 -   `api/comment/<int:id>/` (PUT): allows authenticated users to update their comment.
 -   `api/comment/<int:id>/` (DELETE): allows authenticated users delete their comment.
+
+
+#License
+
+This project is licensed under the MIT License - [LICENSE](LICENSE) file for details.
