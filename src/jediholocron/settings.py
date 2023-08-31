@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
     # second parth apps
     "user_app.apps.UserAppConfig",
-    "core.apps.CoreAppConfig",
+    "core.apps.CoreConfig",
 
     # third party apps
     "rest_framework",
@@ -62,7 +62,7 @@ AUTH_USER_MODEL = "user_app.User"
 
 
 CRONJOBS = [
-    ('0 0 * * *', 'core.management.commands.update_external_data')
+    ('0 0 * * *', 'core.management.commands.update_film_data') #run updates on all film every midnight
 ]
 
 

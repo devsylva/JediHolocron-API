@@ -8,16 +8,17 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         response = requests.get('https://swapi.dev/api/films') 
         data = response.json()
+        # print(data["results"][1]["url"][28:-1])
 
-        for film_data in data:
+        film_data = data["results"]
+        for i in film_data:
             film, created = Film.objects.update_or_create(
-                # Use a unique identifier from the API data, like film ID
-                id=film_data['id'],
+                # i used the id as my unique identifier
+                # get film id from the url endpoint
+                id=int(i['url'][28:-1]),
                 defaults={
-                    'title': film_data['title'],
-                    'description': film_data['description'],
-                    'release_date': film_data['release_date'],
-                    # Map other fields
+                    'title': i['title'],
+                    'release_date': i['release_date'],
                 }
             )
 
