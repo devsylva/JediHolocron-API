@@ -27,7 +27,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="JediHolocron API",
         default_version="vv1",
-        description="API documentation of JediHolocrono",
+        description="API documentation of JediHolocron",
         license=openapi.License(name="BSD License"),
     ),
     public=True,
@@ -37,6 +37,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("user_app.urls")),
+    path("api/", include("core.urls")),
 
     # swagger doc routes
     path("api/doc/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
