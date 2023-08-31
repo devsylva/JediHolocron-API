@@ -31,7 +31,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*",
+    "jediholocron-3afedfa6d6ce.herokuapp.com",
+]
 
 
 # Application definition
