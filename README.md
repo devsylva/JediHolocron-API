@@ -149,7 +149,21 @@ i configured the `update_film_data` function to run automatically using Django's
 
 To smartly retrieve the film's ID from the URL provided by the external API, you have employed a parsing strategy. You iterated over the URL to extract the necessary ID component, which uniquely identifies the film. This clever approach allows you to match external film data with your local records efficiently.
 
-![code](https://github.com/devsylva/JediHolocron-API/assets/67736638/4275b991-b28a-4831-a734-00b7841414f5)
+```
+def handle(self, *args, **options):
+        response = requests.get('https://swapi.dev/api/films') 
+        data = response.json()
+        film_data = data["results"]
+        for i in film_data:
+            film, created = Film.objects.update_or_create(
+                # get film id from the url endpoint
+                id=int(i['url'][28:-1]),
+                defaults={
+                    'title': i['title'],
+                    'release_date': i['release_date'],
+                }
+            )
+```
 
 
 ### Conclusion
