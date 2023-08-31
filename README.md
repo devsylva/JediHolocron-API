@@ -50,7 +50,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Change `.env.templates` in the `jediholocron` directory to `.env`. Then provide the requierd data specifiedd.
+5. Change `.env.templates` in the jediholocron directory to `.env`. Then provide the requierd data specifiedd.
 
 6. Set up the database.
 
@@ -130,7 +130,7 @@ Maintaining accurate and current film data is crucial for this application. To a
 
 ### Updating Function: `update_film_data`
 
-The `update_film_data` function is responsible for fetching film data from the external API and updating your local database accordingly. This function is designed to be executed at specified intervals, ensuring that your film records remain current.
+The `update_film_data` function is responsible for fetching film data from the external API and updating your database accordingly. This function is designed to be executed at specified intervals, ensuring that your film records remain current.
 
 #### Implementation Details
 
