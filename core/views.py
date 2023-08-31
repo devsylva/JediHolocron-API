@@ -23,7 +23,7 @@ class WelcomeView(APIView):
                 "database": "PostgreSQL"
             },
             "api doc": "https://jediholocron-3afedfa6d6ce.herokuapp.com/api/doc/",
-            "github repo": "https://github.com/devsylva/",
+            "github repo": "https://github.com/devsylva/JediHolocron-API",
         }, status=status.HTTP_200_OK)
 
 
