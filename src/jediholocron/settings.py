@@ -140,7 +140,7 @@ SIMPLE_JWT = {
 }
 
 
-# swagger config
+# swagger configs
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Bearer": {
