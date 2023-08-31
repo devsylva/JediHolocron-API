@@ -1,1 +1,1 @@
-web: gunicorn src.jediholocron.wsgi --log-file -
+web: gunicorn jediholocron.wsgi --log-file -
