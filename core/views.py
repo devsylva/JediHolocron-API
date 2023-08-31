@@ -50,10 +50,12 @@ class FilmDetail(APIView):
     def get(self, request, pk, format=None):
         film = get_object_or_404(Film, pk=pk)
         serializer = FilmSerializer(film)
+        comments = film.comments.all()
+        commentserializer = CommentSerializer(comments, many=True)
         return Response({
             "film": serializer.data,
             "comment count": film.comments.count(),
-            "comments" : film.comments.all()
+            "comments" : commentserializer.data
         }, status=status.HTTP_200_OK)
 
 
