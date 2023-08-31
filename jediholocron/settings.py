@@ -122,7 +122,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "rediss://:p123746fd34a9484f3edde826c8167fac205ad7512c6dee805e33685d36e640ed@ec2-34-239-80-5.compute-1.amazonaws.com:28980",
+        "LOCATION": env("REDIS_LOCATION"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
