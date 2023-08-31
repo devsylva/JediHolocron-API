@@ -44,19 +44,18 @@ def signUp(request):
 
 # POST: handles logging out a user
 # requires authentication to perform this func
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def logout_view(request):
-    """
-    Logout view to blacklist the user's refresh token.
-    """
-    try:
-        refresh_token = request.data['refresh_token']
-        token = RefreshToken(refresh_token)
-        token.blacklist()
-        return Response({"message": "successfully logged out"}, status=status.HTTP_205_RESET_CONTENT)
-    except Exception:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 # POST: handles changing of password

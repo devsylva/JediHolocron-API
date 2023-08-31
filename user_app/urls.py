@@ -9,6 +9,6 @@ urlpatterns = router.urls + [
     path("signup/", signUp, name="signup"),
     path("login/", MyObtainTokenPairView.as_view(), name="token_obtain_pair"),
     path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("logout/", logout_view, name='logout'),
+    path("logout/", LogoutView.as_view(), name='logout'),
     path('change_password/', change_password, name='change_password'),
 ]
