@@ -44,7 +44,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Change `.env.templates` in the `jediholocron` directory to `.env`. Then provide the requierd data specified in the file.
+5. Change `.env.templates` in the `jediholocron` directory to `.env`. Then provide the requierd data specifiedd.
 
 6. Set up the database.
 
@@ -63,3 +63,25 @@ python manage.py createsuperuser
 ```
 python manage.py runserver
 ```
+
+
+# Running tests
+
+Here's how to run tests.
+
+- To run all the tests, use the following command
+
+```
+python manage.py test
+```
+
+
+# Functional Requirements Definition
+
+Functional requirements specify the actions that a software system or application should take to satisf the user's needs and business objectives. They describe the system's functions, features, and capabilites, as well as how it should respond under different circumstances
+
+### User Authentication
+The API should provide a user registration and login including password recovery features. We'll ensure that passwords are securely stored and hashed using Django's built-in Authentication system.
+
+### Film Storage and Organization
+The API should provide an effective pattern for fetching Film data from the provided endpoint in other to store the film's id, tile, release data and comment count in our database. Films should be sorted in ascending order with respect to the release date. User should also be able to comment on film(s) and hence provide endpoint for  listing comments made to film(s)
