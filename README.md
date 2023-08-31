@@ -149,6 +149,7 @@ i configured the `update_film_data` function to run automatically using Django's
 
 To smartly retrieve the film's ID from the URL provided by the external API, you have employed a parsing strategy. You iterated over the URL to extract the necessary ID component, which uniquely identifies the film. This clever approach allows you to match external film data with your local records efficiently.
 
+![code](https://github.com/devsylva/JediHolocron-API/assets/67736638/4275b991-b28a-4831-a734-00b7841414f5)
 
 
 ### Conclusion
