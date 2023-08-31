@@ -84,4 +84,4 @@ Functional requirements specify the actions that a software system or applicatio
 The API should provide a user registration and login including password recovery features. We'll ensure that passwords are securely stored and hashed using Django's built-in Authentication system.
 
 ### Film Storage and Organization
-The API should provide an effective pattern for fetching Film data from the provided endpoint in other to store the film's id, tile, release data and comment count in our database. Films should be sorted in ascending order with respect to the release date. User should also be able to comment on film(s) and hence provide endpoint for  listing comments made to film(s)
+The API should provide an effective pattern for fetching Film data from the provided Star Wars API endpoint in other to store the film's id, title, release date and comment count in our database. Films should be sorted in ascending order with respect to their release date, Also users shouldbe able to comment on film(s), hence provide endpoint for listing comments made to film(s) also in ascending order with respect to their creation time.
