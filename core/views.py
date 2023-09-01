@@ -20,7 +20,9 @@ class WelcomeView(APIView):
             "stack": {
                 "language": "Python",
                 "framework": "Django",
-                "database": "PostgreSQL"
+                "database": "PostgreSQL",
+                "Version Control": "Git",
+                "Hosting/Deployment": "Heroku",
             },
             "api doc": "https://jediholocron-3afedfa6d6ce.herokuapp.com/api/doc/",
             "github repo": "https://github.com/devsylva/JediHolocron-API",
