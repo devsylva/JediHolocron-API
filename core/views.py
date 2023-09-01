@@ -44,7 +44,7 @@ class FilmView(APIView):
     - 401 Unauthorized: Authentication required
     """
 
-    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
         serializer = FilmSerializer(films, many=True)
@@ -88,7 +88,7 @@ class FilmDetail(APIView):
 class CommentView(APIView):
     permission_classes = [IsAuthenticated]
     
-    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
     def get(self, request, format=None):
         """
         retrieve a list of all the comments in ascending order with respect to date created
