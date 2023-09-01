@@ -29,11 +29,13 @@ schema_view = get_schema_view(
         title="JediHolocron API",
         default_version="vv1",
         description="API documentation of JediHolocron",
-        license=openapi.License(name="BSD License"),
+        contact=openapi.Contact(email="sylvaejike@gmail.com"),
+        license=openapi.License(name="MIT License"),
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
 )
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

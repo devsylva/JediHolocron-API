@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 from .models import Film, Comment
 from .serializers import FilmSerializer, CommentSerializer
 from django.utils.decorators import method_decorator
@@ -26,14 +27,21 @@ class WelcomeView(APIView):
             },
             "api doc": "https://jediholocron-3afedfa6d6ce.herokuapp.com/api/doc/",
             "github repo": "https://github.com/devsylva/JediHolocron-API",
+            "postman test collection": "https://www.postman.com/universal-firefly-869928/workspace/jediholocron"
         }, status=status.HTTP_200_OK)
 
 
 class FilmView(APIView):
     permission_classes = [IsAuthenticated]
+
     """
-    list all films in ascending order by release date
+    retrieve a list of films in ascending order with respect to release data
+
+    Returns:
+    - 200 OK: List of films
+    - 401 Unauthorized: Authentication required
     """
+
     @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
@@ -47,7 +55,19 @@ class FilmView(APIView):
 class FilmDetail(APIView):
     permission_classes = [IsAuthenticated]
     """
-    retrieve a film instance
+    retrieve a film by ID
+
+    This endpoint allows you to retrieve detailed information about a specific film by 
+    providing its unique identifier (ID) in the URL.
+
+    URL paramters:
+    - `id` (int): The unique identifier of the film to retrieve
+
+    Returns: 
+    - 200 OK: Film found and returned successfully
+    - 404 Not Found: Film with the provided ID does not exist.
+    - 401 Unauthorized: Authentication required.
+
     """
     def get(self, request, pk, format=None):
         film = get_object_or_404(Film, pk=pk)
@@ -63,16 +83,28 @@ class FilmDetail(APIView):
 
 class CommentView(APIView):
     permission_classes = [IsAuthenticated]
-    """
-    list all comment or create a new comment
-    """
+    
     @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
+        """
+        retrieve a list of all the comments in ascending order with respect to date created
+
+        Returns:
+        - 200 OK: List of comments
+        - 401 Unauthorized: Authentication required
+        """
         comments = Comment.objects.all().order_by("created_at")
         serializer = CommentSerializer(comments,  many=True)
         return Response(serializer.data)    
 
+    @swagger_auto_schema(
+        request_body=CommentSerializer,
+        responses={201: "Comment created successfully"}
+    )
     def post(self, request, format=None):
+        """
+        Create a new comment with custom parameters.
+        """
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
@@ -85,16 +117,17 @@ class CommentView(APIView):
 
 class CommentDetail(APIView):
     permission_classes = [IsAuthenticated]
-    """
-    retrieve a comment instance
-    """
+    
     def get(self, request, pk, format=None):
+        """
+        retrieve a comment instance
+        """
         comment = get_object_or_404(Comment, pk=pk)
         serializer = CommentSerializer(comment)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk, format=None):
-        comment = get_object_or_404(Comment, pk=pk)
+        comment = get_object_or_404(Comment, pk=pk, user=request.user)
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
