@@ -32,7 +32,7 @@ class FilmView(APIView):
     """
     list all films in ascending order by release date
     """
-    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
         serializer = FilmSerializer(films, many=True)
@@ -64,7 +64,7 @@ class CommentView(APIView):
     """
     list all comment or create a new comment
     """
-    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         comments = Comment.objects.all().order_by("created_at")
         serializer = CommentSerializer(comments,  many=True)
