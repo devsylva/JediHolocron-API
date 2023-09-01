@@ -41,7 +41,7 @@ def signUp(request):
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         data = {
-            "status": "success",
+            "success": True,
             "message": "registration successful",
             "data": serializer.data
         }

@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from core.models import Film, Comment 
 import requests
 
+
 class Command(BaseCommand):
     help = 'Fetch and update film data from external API'
 

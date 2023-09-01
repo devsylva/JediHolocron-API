@@ -11,6 +11,8 @@ from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
+
+
 class WelcomeView(APIView):
     permission_classes = [AllowAny]
 
@@ -42,7 +44,7 @@ class FilmView(APIView):
     - 401 Unauthorized: Authentication required
     """
 
-    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
         serializer = FilmSerializer(films, many=True)
@@ -54,6 +56,7 @@ class FilmView(APIView):
 
 class FilmDetail(APIView):
     permission_classes = [IsAuthenticated]
+
     """
     retrieve a film by ID
 
@@ -69,6 +72,7 @@ class FilmDetail(APIView):
     - 401 Unauthorized: Authentication required.
 
     """
+
     def get(self, request, pk, format=None):
         film = get_object_or_404(Film, pk=pk)
         serializer = FilmSerializer(film)
@@ -84,7 +88,7 @@ class FilmDetail(APIView):
 class CommentView(APIView):
     permission_classes = [IsAuthenticated]
     
-    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         """
         retrieve a list of all the comments in ascending order with respect to date created
@@ -128,18 +132,24 @@ class CommentDetail(APIView):
 
     def put(self, request, pk, format=None):
         comment = get_object_or_404(Comment, pk=pk, user=request.user)
-        serializer = CommentSerializer(comment, data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response({
-                "message": "comment updated",
-                "data": serializer.data
-            }, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if comment.user == request.user:
+            serializer = CommentSerializer(comment, data=request.data)
+            if serializer.is_valid():
+                serializer.save(user=request.user)
+                return Response({
+                    "message": "comment updated",
+                    "data": serializer.data
+                }, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "You can't edit a comment that isn't yours"}, status=status.HTTP_403_FORBIDDEN)
 
     def delete(self, request, pk, format=None):
-        comment = get_object_or_404(Comment, pk=pk, user=request.user)
-        comment.delete()
-        return Response({
-            "message": "Comment deleted"
-        }, status=status.HTTP_204_NO_CONTENT)
+        comment = get_object_or_404(Comment, pk=pk)
+        if comment.user == request.user:
+            comment.delete_and_update_comment_count()
+            return Response({
+                "message": "Comment deleted"
+            }, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"message": "You can't delete a comment that isn't yours"}, status=status.HTTP_403_FORBIDDEN)

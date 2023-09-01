@@ -18,5 +18,12 @@ class Comment(models.Model):
     text = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def delete_and_update_comment_count(self):
+        # Decrement the comment count of the associated film
+        self.film.comment_count -= 1
+        self.film.save()
+        # Delete the comment
+        self.delete()
+
     def __str__(self):
         return f"Comment on {self.film.title}"
