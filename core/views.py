@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Film, Comment
 from .serializers import FilmSerializer, CommentSerializer
-# from django.utils.decorators import method_decorator
-# from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
@@ -32,7 +32,7 @@ class FilmView(APIView):
     """
     list all films in ascending order by release date
     """
-    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
         serializer = FilmSerializer(films, many=True)
@@ -50,7 +50,7 @@ class FilmDetail(APIView):
     def get(self, request, pk, format=None):
         film = get_object_or_404(Film, pk=pk)
         serializer = FilmSerializer(film)
-        comments = film.comments.all()
+        comments = film.comments.all().order_by("created_at")
         commentserializer = CommentSerializer(comments, many=True)
         return Response({
             "film": serializer.data,
@@ -64,7 +64,7 @@ class CommentView(APIView):
     """
     list all comment or create a new comment
     """
-    # @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
+    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, format=None):
         comments = Comment.objects.all().order_by("created_at")
         serializer = CommentSerializer(comments,  many=True)
