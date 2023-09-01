@@ -124,7 +124,7 @@ CACHES = {
         "LOCATION": env("REDIS_LOCATION"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            'SSL_CERT_IGNORE': True,  # Ignore SSL certificate validation
+            "CONNECTION_POOL_KWARGS": {"ssl_cert_reqs": None},
         }
     }
 }
