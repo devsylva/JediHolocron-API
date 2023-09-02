@@ -109,6 +109,22 @@ Rate limiting is applied to ensure fair usage of this API. Below are the rate li
 
   Please note that exceeding the rate limit will result in request throttling or blocking.
 
+
+## Backup Data
+
+To ensure the safety and preservation of our `User`, `Film` and `Comment` data i came up with a Disaster recovery plan, here i implemented a convenient backup system in this project. This backup functionality allows you to create snapshots of your database records, providing several benefits:
+
+### How It Works
+
+The backup system uses a custom Django management command named `backup_data` to export your data to JSON files. These files are saved in a dedicated backup directory, and each file is named with a timestamp, indicating when the backup was created.It is scheduled in our Heroku Scheduler to run everyday by 12:00 AM UTC.
+Here's how it works:
+
+1. The `backup_data` command is run via the following command-line:
+   
+   ```bash
+   python manage.py backup_data
+
+
 ## User Authentication
 Authentication is required for most endpoints in the API. To authenticate, include an access token in the `Authorization` header of your request. The access token can be obtained by logging into your account.
 
