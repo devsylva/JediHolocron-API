@@ -211,7 +211,7 @@ While the API is designed to be robust and user-friendly, there are some limitat
 
 1. *Request Body Display in Swagger UI*: As of now, Swagger UI may not consistently display the request body when documenting complex API endpoints. This limitation can make it challenging for users to understand and test API requests directly through Swagger UI.
 
-   Mitigation: To address this limitation, we recommend using Postman for more comprehensive API testing and documentation. Postman provides a user-friendly interface for crafting and testing API requests, including support for displaying request bodies, making it easier to work with our API. [POSTMAN](https://www.postman.com/universal-firefly-869928/workspace/jediholocron "Test Endpoints with Postman")
+   Mitigation: To address this limitation, we recommend using Postman for more comprehensive API testing and documentation. Postman provides a user-friendly interface for crafting and testing API requests, including support for displaying request bodies, making it easier to work with our API. [POSTMAN](https://universal-firefly-869928.postman.co/workspace/5cd9b38b-31ec-4ae8-a146-aa6fce06363d "Test Endpoints with Postman")
 
 2. *Rate Limiting*: To ensure fair usage and server stability, our API enforces rate limiting. While we strive to provide generous rate limits, you may encounter rate-limiting restrictions if your application makes a large number of requests in a short period. Be sure to review our rate-limiting policies in the documentation to understand the limits and how to handle them gracefully in your application. 
 

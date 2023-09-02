@@ -30,7 +30,7 @@ class WelcomeView(APIView):
             },
             "api doc": "https://jediholocron-3afedfa6d6ce.herokuapp.com/api/doc/",
             "github repo": "https://github.com/devsylva/JediHolocron-API",
-            "postman test collection": "https://www.postman.com/universal-firefly-869928/workspace/jediholocron"
+            "postman test collection": "https://universal-firefly-869928.postman.co/workspace/5cd9b38b-31ec-4ae8-a146-aa6fce06363d"
         }, status=status.HTTP_200_OK)
 
 
