@@ -99,6 +99,16 @@ The API should provide a user registration and login including password recovery
 The API should provide an effective pattern for fetching Film data from the provided Star Wars API endpoint in other to store the film's id, title, release date and comment count in our database. Films should be sorted in ascending order with respect to their release date, Also users shouldbe able to comment on film(s), hence provide endpoint for listing comments made to film(s) also in ascending order with respect to their creation time.
 
 
+## Rate Limiting
+
+Rate limiting is applied to ensure fair usage of this API. Below are the rate limits:
+
+- **User Rate Limit**: Each user is limited to a certain number of requests per time period.
+
+  - **Rate Limit**: 60 requests per hour.
+
+  Please note that exceeding the rate limit will result in request throttling or blocking.
+
 ## User Authentication
 Authentication is required for most endpoints in the API. To authenticate, include an access token in the `Authorization` header of your request. The access token can be obtained by logging into your account.
 
@@ -185,10 +195,9 @@ While the API is designed to be robust and user-friendly, there are some limitat
 
 1. *Request Body Display in Swagger UI*: As of now, Swagger UI may not consistently display the request body when documenting complex API endpoints. This limitation can make it challenging for users to understand and test API requests directly through Swagger UI.
 
-   Mitigation: To address this limitation, we recommend using Postman for more comprehensive API testing and documentation. Postman provides a user-friendly interface for crafting and testing API requests, including support for displaying request bodies, making it easier to work with our API.
+   Mitigation: To address this limitation, we recommend using Postman for more comprehensive API testing and documentation. Postman provides a user-friendly interface for crafting and testing API requests, including support for displaying request bodies, making it easier to work with our API. [POSTMAN](https://www.postman.com/universal-firefly-869928/workspace/jediholocron "Test Endpoints with Postman")
 
 2. *Rate Limiting*: To ensure fair usage and server stability, our API enforces rate limiting. While we strive to provide generous rate limits, you may encounter rate-limiting restrictions if your application makes a large number of requests in a short period. Be sure to review our rate-limiting policies in the documentation to understand the limits and how to handle them gracefully in your application. 
-[POSTMAN](https://www.postman.com/universal-firefly-869928/workspace/jediholocron "Test Endpoints with Postman")
 
 
 3. *Data Freshness*: Our API data may not always be up-to-the-minute current. Depending on the nature of the data source, there may be a slight delay in updates. Be aware of this when relying on real-time data for critical applications

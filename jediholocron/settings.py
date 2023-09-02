@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_yasg",
     "crontab",
+    "django_ratelimit",
 ]
 
 

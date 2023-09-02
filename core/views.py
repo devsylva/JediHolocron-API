@@ -8,6 +8,7 @@ from .models import Film, Comment
 from .serializers import FilmSerializer, CommentSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django_ratelimit.decorators import ratelimit
 
 
 # Create your views here.
@@ -43,7 +44,7 @@ class FilmView(APIView):
     - 200 OK: List of films
     - 401 Unauthorized: Authentication required
     """
-
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
     def get(self, request, format=None):
         films = Film.objects.all().order_by("release_date")
@@ -72,7 +73,7 @@ class FilmDetail(APIView):
     - 401 Unauthorized: Authentication required.
 
     """
-
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     def get(self, request, pk, format=None):
         film = get_object_or_404(Film, pk=pk)
         serializer = FilmSerializer(film)
@@ -88,6 +89,7 @@ class FilmDetail(APIView):
 class CommentView(APIView):
     permission_classes = [IsAuthenticated]
     
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes
     def get(self, request, format=None):
         """
@@ -105,6 +107,7 @@ class CommentView(APIView):
         request_body=CommentSerializer,
         responses={201: "Comment created successfully"}
     )
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     def post(self, request, format=None):
         """
         Create a new comment with custom parameters.
@@ -122,6 +125,7 @@ class CommentView(APIView):
 class CommentDetail(APIView):
     permission_classes = [IsAuthenticated]
     
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     def get(self, request, pk, format=None):
         """
         retrieve a comment instance
@@ -130,6 +134,7 @@ class CommentDetail(APIView):
         serializer = CommentSerializer(comment)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     def put(self, request, pk, format=None):
         comment = get_object_or_404(Comment, pk=pk, user=request.user)
         if comment.user == request.user:
@@ -144,6 +149,7 @@ class CommentDetail(APIView):
         else:
             return Response({"message": "You can't edit a comment that isn't yours"}, status=status.HTTP_403_FORBIDDEN)
 
+    @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     def delete(self, request, pk, format=None):
         comment = get_object_or_404(Comment, pk=pk)
         if comment.user == request.user:
