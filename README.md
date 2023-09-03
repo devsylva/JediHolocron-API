@@ -218,6 +218,7 @@ While the API is designed to be robust and user-friendly, there are some limitat
 
 3. *Data Freshness*: Our API data may not always be up-to-the-minute current. Depending on the nature of the data source, there may be a slight delay in updates. Be aware of this when relying on real-time data for critical applications
 
+4. *Ephemeral Backups*: Backups created using the provided backup command are not stored permanently on Heroku's filesystem. This means that they are not retained if your Heroku dyno restarts or scales. To ensure long-term backup retention, consider implementing a cloud storage solution.
 
 # License
 
