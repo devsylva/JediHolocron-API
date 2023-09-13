@@ -9,6 +9,7 @@ from .serializers import FilmSerializer, CommentSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django_ratelimit.decorators import ratelimit
+from rest_framework.pagination import PageNumberPagination
 
 
 # Create your views here.
@@ -36,6 +37,7 @@ class WelcomeView(APIView):
 
 class FilmView(APIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = PageNumberPagination
 
     """
     retrieve a list of films in ascending order with respect to release data
@@ -88,6 +90,7 @@ class FilmDetail(APIView):
 
 class CommentView(APIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = PageNumberPagination
     
     @method_decorator(ratelimit(key='user', rate='60/h', block=True))
     @method_decorator(cache_page(60 * 5))  # Cache for 5 minutes

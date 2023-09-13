@@ -10,8 +10,8 @@ from .views import (
 app_name = "core"
 
 urlpatterns = [
-    path("films/", FilmView.as_view()),
-    path("film/<int:pk>/", FilmDetail.as_view()),
-    path("comments/", CommentView.as_view()),
-    path("comment/<int:pk>/", CommentDetail.as_view()),
+    path("films/", FilmView.as_view(), name="film-list"),
+    path("film/<int:pk>/", FilmDetail.as_view(), name="film-detail"),
+    path("comments/", CommentView.as_view(), name="comment-list"),
+    path("comment/<int:pk>/", CommentDetail.as_view(), name="comment-detail"),
 ]
