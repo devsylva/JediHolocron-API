@@ -103,7 +103,7 @@ class CommentView(APIView):
         - 401 Unauthorized: Authentication required
         """
         comments = Comment.objects.all().order_by("created_at")
-        serializer = CommentSerializer(comments,  many=True)
+        serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)    
 
     @swagger_auto_schema(
