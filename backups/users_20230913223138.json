@@ -1,0 +1,36 @@
+[
+{
+  "model": "user_app.user",
+  "pk": "7b2fb836-8b50-4f05-b7ad-c52d8f63b93c",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Vu3hZOyiwQGHaah8ROycoj$S1mALnHU9dCDWAEdilQCG86vsUiMkGhh2u9tHwE3m6A=",
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-08T19:10:48.067Z",
+    "email": "testemail@gmail.com",
+    "first_name": "testfirstname",
+    "last_name": "testlastname",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user_app.user",
+  "pk": "db3b6c05-af84-46ab-a753-a6e725a105f3",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$hdoXEk1IGqBDOKuQaHlA24$O+sJeGJzDCmpvCEX0S8N/+GBKesSgb6abBOQqa/glAE=",
+    "last_login": "2023-09-13T21:17:30.953Z",
+    "is_superuser": true,
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-08-31T11:00:19.998Z",
+    "email": "sylvaejike@gmail.com",
+    "first_name": "Ejike",
+    "last_name": "Sylva",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

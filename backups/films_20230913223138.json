@@ -1,0 +1,56 @@
+[
+{
+  "model": "core.film",
+  "pk": 1,
+  "fields": {
+    "title": "A New Hope",
+    "comment_count": 0,
+    "release_date": "1977-05-25"
+  }
+},
+{
+  "model": "core.film",
+  "pk": 2,
+  "fields": {
+    "title": "The Empire Strikes Back",
+    "comment_count": 7,
+    "release_date": "1980-05-17"
+  }
+},
+{
+  "model": "core.film",
+  "pk": 3,
+  "fields": {
+    "title": "Return of the Jedi",
+    "comment_count": 0,
+    "release_date": "1983-05-25"
+  }
+},
+{
+  "model": "core.film",
+  "pk": 4,
+  "fields": {
+    "title": "The Phantom Menace",
+    "comment_count": 0,
+    "release_date": "1999-05-19"
+  }
+},
+{
+  "model": "core.film",
+  "pk": 5,
+  "fields": {
+    "title": "Attack of the Clones",
+    "comment_count": 0,
+    "release_date": "2002-05-16"
+  }
+},
+{
+  "model": "core.film",
+  "pk": 6,
+  "fields": {
+    "title": "Revenge of the Sith",
+    "comment_count": 0,
+    "release_date": "2005-05-19"
+  }
+}
+]
