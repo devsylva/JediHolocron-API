@@ -12,4 +12,4 @@ def update_film_comment_count(sender, instance, created, **kwargs):
         film = Film.objects.get(id=instance.film.id)
         film.comment_count += 1
         film.save()
-        
+            
