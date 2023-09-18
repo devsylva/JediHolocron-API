@@ -71,10 +71,31 @@ CRONJOBS = [
 ]
 
 
+# CORS Settings
+CORS_ALLOW_ALL_ORIGINS = False  # Set to True to allow all origins; use cautiously in production.
+CORS_ALLOW_CREDENTIALS = True   # Allow cookies and credentials in CORS requests.
+CORS_ALLOW_HEADERS = (
+    'Authorization',
+    'Content-Type',
+)
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+)
+CORS_ALLOWED_ORIGINS = [
+    'https://jediholocron-3afedfa6d6ce.herokuapp.com/',  # Add your allowed origins here
+]
+
+
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
