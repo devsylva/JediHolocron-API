@@ -87,7 +87,7 @@ CORS_ALLOW_METHODS = (
     'OPTIONS',
 )
 CORS_ALLOWED_ORIGINS = [
-    'https://jediholocron-3afedfa6d6ce.herokuapp.com/',  # Add your allowed origins here
+    'https://jediholocron-3afedfa6d6ce.herokuapp.com',  # Add your allowed origins here
 ]
 
 
